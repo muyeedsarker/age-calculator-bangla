@@ -1,19 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#b9c1cc">
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b91c1c">
 
   <title>MuyeedLab - বাংলা বয়স গণনা</title>
 
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Logo -->
+  <!-- Logo / Brand -->
   <div class="logo-container">
     <img src="logo.png" alt="MuyeedLab" class="site-logo">
   </div>
@@ -22,32 +22,49 @@
 
     <section class="card">
 
-      <h1>MuyeedLab</h1>
+      <h1>বাংলা বয়স গণনা</h1>
 
       <p class="subtitle">
-        বাংলা বয়স গণনা • MuyeedLab
+        জন্মতারিখ থেকে সঠিক বয়স হিসাব করুন
       </p>
 
       <div class="fields">
 
         <label>
           জন্মদিন
-          <input id="day" type="number" min="1" max="31" placeholder="দিন">
+          <input
+            id="day"
+            type="number"
+            min="1"
+            max="31"
+            placeholder="দিন">
         </label>
 
         <label>
           জন্মমাস
-          <input id="month" type="number" min="1" max="12" placeholder="মাস">
+          <input
+            id="month"
+            type="number"
+            min="1"
+            max="12"
+            placeholder="মাস">
         </label>
 
         <label>
           জন্মবছর
-          <input id="year" type="number" min="1" max="9999" placeholder="বছর">
+          <input
+            id="year"
+            type="number"
+            min="1"
+            max="9999"
+            placeholder="বছর">
         </label>
 
       </div>
 
-      <button id="calculate">বয়স হিসাব করুন</button>
+      <button id="calculate">
+        বয়স হিসাব করুন
+      </button>
 
       <button id="today" class="secondary">
         আজকের তারিখ ব্যবহার করুন
@@ -74,13 +91,25 @@
 
     </section>
 
-    <footer>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </footer>
-
   </main>
 
+  <footer>
+    <p>© MuyeedLab</p>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
   <script src="app.js"></script>
+
+  <script>
+    // Service Worker চালু করা
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js")
+          .then(() => console.log("MuyeedLab Service Worker চালু হয়েছে"))
+          .catch(error => console.log("Service Worker Error:", error));
+      });
+    }
+  </script>
 
 </body>
 </html>
