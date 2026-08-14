@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#b9c1cc">
   <link rel="manifest" href="manifest.json">
-  <title>বাংলা বয়স গণনা</title>
+
+  <title>MuyeedLab - বাংলা বয়স গণনা</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,16 +15,17 @@
 
   <!-- Logo -->
   <div class="logo-container">
-    <img src="logo.png" alt="বয়স ক্যালকুলেটর" class="site-logo">
+    <img src="logo.png" alt="MuyeedLab" class="site-logo">
   </div>
 
   <main class="page">
 
     <section class="card">
-      <h1>বয়স গণনা</h1>
+
+      <h1>MuyeedLab</h1>
 
       <p class="subtitle">
-        জন্মতারিখ থেকে সঠিক বয়স হিসাব করুন
+        বাংলা বয়স গণনা • MuyeedLab
       </p>
 
       <div class="fields">
@@ -38,21 +41,22 @@
         </label>
 
         <label>
-          জন্মসন
+          জন্মবছর
           <input id="year" type="number" min="1" max="9999" placeholder="বছর">
         </label>
 
       </div>
 
-      <button id="calculate">বয়স হিসাব করুন</button>
+      <button id="calculate">বয়স হিসাব করুন</button>
 
       <button id="today" class="secondary">
-        আজকের তারিখ
+        আজকের তারিখ ব্যবহার করুন
       </button>
 
       <div id="message" class="message" aria-live="polite"></div>
 
       <section id="result" class="result" hidden>
+
         <h2>আপনার বয়স</h2>
 
         <div class="age-big">
@@ -65,6 +69,7 @@
           মোট বয়স:
           <strong id="totalDays">0</strong> দিন
         </p>
+
       </section>
 
     </section>
