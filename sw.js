@@ -1,31 +1,27 @@
-const CACHE = 'age-calculator-v2';
+const CACHE_NAME = "muyeedlab-v1";
 
-const ASSETS = [
-  './',
-  './index.html',
-  './style.css',
-  './app.js',
-  './manifest.json',
-  './logo.png',
-  './privacy-policy.html'
+const FILES_TO_CACHE = [
+  "./",
+  "./index.html",
+  "./manifest.json"
 ];
 
-// নতুন Service Worker ইনস্টল
-self.addEventListener('install', event => {
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
 
   self.skipWaiting();
 });
 
-// পুরোনো Cache মুছে ফেলা
-self.addEventListener('activate', event => {
+self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter(key => key !== CACHE)
+          .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
       )
     )
@@ -34,21 +30,10 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// আগে নতুন ফাইল নেওয়ার চেষ্টা করবে
-self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-
+self.addEventListener("fetch", event => {
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const copy = response.clone();
-
-        caches.open(CACHE).then(cache => {
-          cache.put(event.request, copy);
-        });
-
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+    caches.match(event.request).then(cachedResponse => {
+      return cachedResponse || fetch(event.request);
+    })
   );
 });
